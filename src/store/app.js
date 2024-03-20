@@ -5,10 +5,9 @@ export const useAppStore = defineStore("app", {
   state: () => {
     //
     if (localStorage.getItem("panier")) {
-      console.log("DB test 456")
-      return { panier: JSON.parse(localStorage.getItem("panier")), user: "" };
+      return { panier: JSON.parse(localStorage.getItem("panier")), user: "Prof" };
     }
-    return { panier: [], user: "" };
+    return { panier: [], user: "Prof" };
   },
   actions: {
     addToCart(pokemonID) {
@@ -16,6 +15,7 @@ export const useAppStore = defineStore("app", {
       localStorage.setItem("panier", JSON.stringify(this.panier));
     },
     removeFromCart(index) {
+      // const index = this.panier.indexOf(Number(pokemonID))
       this.panier.splice(index, 1);
       localStorage.setItem("panier", JSON.stringify(this.panier));
     },

@@ -30,7 +30,7 @@
 
     <div class="d-flex justify-center align-center flex-column w-100">
       <v-btn
-        @click="pokemonID = catchPokemon()"
+        @click="pokemonRandomSeed = Math.floor(pokemonRandomSeed + Math.random()*100)"
         class="w-75 bg-red cursor-grab"
       >
         Attrapez des Pokemons
@@ -40,11 +40,10 @@
         <v-fab-transition group>
           <Pokemon
             v-for="i in sliderValue"
-            :pokemonID="catchPokemon()"
+            pokemonID="random"
             :catchable="true"
-            @click="catchPokemon"
             @catched="addToCart"
-            :key="i + pokemonID"
+            :key="i + pokemonRandomSeed"
             class="ma-3"
           />
         </v-fab-transition>
@@ -59,7 +58,6 @@ import { useAppStore } from "@/store/app";
 import Pokemon from "@/components/Pokemon.vue";
 
 onMounted(() => {
-  catchPokemon();
 });
 
 // Store
@@ -74,7 +72,7 @@ const addToCart = (id) => {
 
 //
 
-const pokemonID = ref(1);
+const pokemonRandomSeed = ref(1);
 
 // Slider
 const minSliderValue = 3;
@@ -96,15 +94,6 @@ const modifySlider = (op) => {
   }
 };
 
-// Functions
-const catchPokemon = (e) => {
-  try {
-    console.log("Attrapez un Pokemon " + e.currentTarget.id);
-  } catch {
-    console.log("init");
-  }
-  return Math.floor(Math.random() * 151) + 1;
-};
 </script>
 
 <style scoped>

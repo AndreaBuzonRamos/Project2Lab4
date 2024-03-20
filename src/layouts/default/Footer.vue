@@ -1,6 +1,6 @@
 <template>
-    <v-footer app class="footer" elevation="2">
-        <v-bottom-navigation class="d-block d-sm-none">
+    <v-footer :app="!mobile" class="footer" elevation="2">
+        <!-- <v-bottom-navigation class="d-block d-sm-none">
             <v-btn value="recent">
                 <v-icon>mdi-history</v-icon>
 
@@ -18,7 +18,7 @@
 
                 <span>Nearby</span>
             </v-btn>
-        </v-bottom-navigation>
+        </v-bottom-navigation> -->
         <v-content>
             Antoine Moevus 2024-2054.
         </v-content>
@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+import { useDisplay } from 'vuetify';
+
+const {mobile} = useDisplay()
 </script>
 
 <style scoped>
