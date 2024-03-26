@@ -5,7 +5,7 @@
 
       <h1 class="text-h2 font-weight-bold">Vuetify</h1>
 
-      <div class="py-5" />
+      <div class="py-5"/>
 
       <v-row class="d-flex align-center justify-center">
         <v-col cols="auto"> <v-btn color="primary"> Primary </v-btn> </v-col>
