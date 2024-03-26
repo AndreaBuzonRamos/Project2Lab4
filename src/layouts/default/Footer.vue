@@ -34,7 +34,7 @@ const {mobile} = useDisplay()
 <style scoped>
 .footer {
     text-align: center;
-    background-color: #b371df;
+    background-color: #4f0780;
     color: white;
 }
 </style>
