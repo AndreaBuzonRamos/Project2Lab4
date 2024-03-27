@@ -1,29 +1,47 @@
+const sql = require("mssql");
+const Item = require("Item");
+const sqlConfig = require("connexion");
+
 export const fetchItem = async (id) => {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const data = await response.json();
-    return {
-      name: data.name,
-      id: id,
-      image: data.sprites.front_default,
-      image_back: data.sprites.back_default,
-      types: data.types.map((type) => type.type.name),
-      weight: data.weight / 10 + " kg", // hg to kg
-      heigth:
-        data.heigth > 10 ? data.heigth / 10 + "m" : data.heigth * 10 + "cm",
-    };
+    await sql.connect(sqlConfig);
+    const result = await sql.query`select * from PRODUIT where id = ${id}`;
+    console.log("Connected to PRODUIT");
+    console.log(result);
+
+    if (result.recordset.length > 0) {
+      const data = result.recordset[0];
+      return new Item(id, {
+        nom: data.nom,
+        marque: data.marque,
+        prix: data.prix,
+        couleur: data.couleur,
+        taille: data.taille,
+        enStock: data.enStock,
+        materiau: data.materiau,
+        genre: data.genre,
+        description: data.description,
+        image: data.image,
+      });
+    } else {
+      console.error(`No se encontró un item con id ${id}`);
+      return null;
+    }
   } catch (error) {
-    console.error(`Erreur lors de la récupération du Pokémon ${id} :`, error);
+    console.error(`Error al obtener el item con id ${id}:`, error);
+    return null;
+  } finally {
+    sql.close();
   }
 };
 
-export const fetchPokemonsRange = async (start, end) => {
-  const pokemons = [];
+export const fetchItemsRange = async (start, end) => {
+  const itemList = [];
   for (let i = start; i <= end; i++) {
-    const pokemon = await fetchItem(i);
-    if (pokemon) {
-      pokemons.push(pokemon);
+    const article = await fetchItem(i);
+    if (article) {
+      itemList.push(article);
     }
   }
-  return pokemons;
+  return itemList;
 };

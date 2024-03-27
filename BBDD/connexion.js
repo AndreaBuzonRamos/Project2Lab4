@@ -1,11 +1,18 @@
 const sql = require("mssql");
+const {
+  DB_USER,
+  DB_PASSWORD,
+  DB_SERVER,
+  DB_PORT,
+  DB_DATABASE,
+} = require("./BBDD");
 
 const sqlConfig = {
-  user: "rsteve",
-  password: "rsteve9876",
-  database: "304-AH-INTER-SERVERII-ANDREA-OSMANY",
-  server: "localhost",
-  port: 54350,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_DATABASE,
+  server: DB_SERVER,
+  port: DB_PORT,
   pool: {
     max: 10,
     min: 0,
