@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { fetchItem, fetchItemsRange } from "@/services/items.service.js";
+import { fetchItem, fetchItemsRange, fetchRandomItem } from "@/services/items.service.js";
 import Item from "@/models/Item.js";
 
 
@@ -52,14 +52,14 @@ onMounted(() => {
   if (!props.itemID){
     // Si pokeID est est undeifned
   } else if (props.itemID === "random") {
-    fetchRandomPokemon().then((data) => {
-      console.log("DB RAND 111", data);
-      pokemon.value = data;
+    fetchRandomItem().then((data) => {
+      console.log("TEST DB", data);
+      item.value = data;
     });
   } else {
-    fetchPokemon(props.pokemonID).then((data) => {
+    fetchItem(props.itemID).then((data) => {
       console.log(data);
-      pokemon.value = data;
+      item.value = data;
     });
   }
 });
