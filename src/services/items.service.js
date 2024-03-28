@@ -1,6 +1,6 @@
 const sql = require("mssql");
 const Item = require("Item");
-const sqlConfig = require("connexion");
+const sqlConfig = require("../BBDD/connexion");
 
 export const fetchItem = async (id) => {
   try {

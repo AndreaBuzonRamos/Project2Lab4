@@ -24,12 +24,12 @@ const sqlConfig = {
   },
 };
 
-async function connectAndQuery() {
+async function connecting() {
   try {
     await sql.connect(sqlConfig);
-    const result = await sql.query`select * from PRODUIT`;
-    console.log("Connected to PRODUIT");
-    console.log(result);
+    /*  const result = await sql.query`select * from PRODUIT`; */
+    console.log("Connected to 304-AH-INTER-SERVERII-ANDREA-OSMANY");
+    /* console.log(result); */
   } catch (err) {
     console.error("Error en la conexión o consulta:", err);
   } finally {
@@ -37,4 +37,4 @@ async function connectAndQuery() {
   }
 }
 
-connectAndQuery();
+connecting();

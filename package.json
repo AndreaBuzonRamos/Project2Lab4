@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
+    "body-parser": "^1.20.2",
     "core-js": "^3.29.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "mssql": "^10.0.2",
     "pinia": "^2.0.0",
     "roboto-fontface": "*",
