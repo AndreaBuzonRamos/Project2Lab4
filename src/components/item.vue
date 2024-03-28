@@ -46,11 +46,11 @@ const item = ref({});
 
 //
 onMounted(() => {
-  console.log("TEST BD", props.itemID);
+  console.log("TEST BD ID PRODUCT", props.itemID);
   if (!props.itemID){
   } else if (props.itemID === "random") {
     fetchRandomItem().then((data) => {
-      console.log("TEST DB", data);
+      console.log("TEST DB RANDOM PRODUCT", data);
       item.value = data;
     });
   } else {
