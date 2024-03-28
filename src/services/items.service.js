@@ -5,8 +5,8 @@ export const fetchRandomItem = async () => {
   console.log("DB 88777RAND:", randId)
 
   //ACA PUEDE HABER UN ERROR DANDO QUEE STOY DECLARAND DOS VECES LA VARIABLE item
-  const item = await fetchItem(randId);
-  return item;
+//   const item = await fetchItem(randId);
+//   return item;
 }
 
 
