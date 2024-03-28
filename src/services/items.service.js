@@ -1,4 +1,4 @@
-import Item from "@/models/item.js" 
+import Item from "@/models/Item.js" 
 
 export const fetchRandomItem = async () => {
   const randId = Math.floor(Math.random() * 151) + 1;
