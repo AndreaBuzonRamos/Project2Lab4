@@ -1,0 +1,68 @@
+<template>
+  <v-card :id="props.itemID" v-if="item.nom" class="mx-auto" width="180" elevation="12" outlined>
+    <v-expand-transition>
+      <v-img v-if="recto" class="white--text align-end" height="200px" :src="item.image"
+        :alt="`Image de ${item.nom}`">
+      </v-img>
+      <!-- <v-img v-else class="white--text align-end" height="200px" :src="item.image_back"
+        :alt="`Image de ${item.nom}`">
+      </v-img> -->
+      <!-- AGREGAR IMAGEN RETROVERSO-->
+    </v-expand-transition>
+
+    <v-card-title>{{ item.nom }}</v-card-title>
+    <v-card-subtitle>Prix: {{ item.prix }} <br />En stoke: {{ item.enStok }}</v-card-subtitle>
+    <v-card-text>Couleur: {{ item.couleur}}</v-card-text>
+    <v-card-text>Taille: {{ item.taille}}</v-card-text>
+    
+    <v-card-actions>
+      <v-btn v-if="recto" color="teal-accent-4" @click="recto = false">Verso</v-btn>
+      <v-btn v-else color="deep-purple accent-4" @click="recto = true">Recto</v-btn>
+      <v-spacer></v-spacer>
+
+      <v-btn v-if="caught ? false : true" class="bg-red-accent-4" @click="$emit('catched', item.id); caught = true">
+        Ajouter </v-btn>
+    </v-card-actions>
+  </v-card>
+
+
+  <v-skeleton-loader v-else type="card, actions" max-width="244" height="372" class="mx-auto"></v-skeleton-loader>
+</template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+import { fetchItem, fetchItemsRange } from "@/services/items.service.js";
+import Item from "@/models/Item.js";
+
+
+
+const props = defineProps(["itemID", "catchable"]);
+defineEmits(['addToCart']);
+
+
+const recto = ref(true);
+const caught = ref(!props.catchable);
+const item = ref({});
+
+//
+onMounted(() => {
+  // console.log("DB RAND 111A", props.pokemonID);
+  // ESTO NO SE NECESITA DE MOMENTO... CREO QUE FUE SOLO PARA RENDERIZAR, PERO EL CODIGO DE ABAJO ES SUFICIENTE PARA ESTO
+
+  if (!props.itemID){
+    // Si pokeID est est undeifned
+  } else if (props.itemID === "random") {
+    fetchRandomPokemon().then((data) => {
+      console.log("DB RAND 111", data);
+      pokemon.value = data;
+    });
+  } else {
+    fetchPokemon(props.pokemonID).then((data) => {
+      console.log(data);
+      pokemon.value = data;
+    });
+  }
+});
+</script>
+
+<style scoped></style>
