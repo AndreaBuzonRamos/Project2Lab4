@@ -4,7 +4,7 @@
     <!-- <v-app-bar-nav-icon @click.stop="drawerOpen = !drawerOpen"></v-app-bar-nav-icon> -->
     <v-app-bar-title>
       <v-avatar image="/Users/andrea/Documents/GitHub/Project2Lab4/src/img/avatar.avif" style="width: 80px; height: 80px; border-radius: 0;" />
-      🤩 Boutique en Ligne PRUEBA BRANCH 🛒
+      🤩 Boutique en Ligne 🛒
     </v-app-bar-title>
 
     <v-row align="center" justify="end" class="fill-height">
