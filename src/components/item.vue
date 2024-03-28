@@ -46,11 +46,8 @@ const item = ref({});
 
 //
 onMounted(() => {
-  // console.log("DB RAND 111A", props.pokemonID);
-  // ESTO NO SE NECESITA DE MOMENTO... CREO QUE FUE SOLO PARA RENDERIZAR, PERO EL CODIGO DE ABAJO ES SUFICIENTE PARA ESTO
-
+  console.log("TEST BD", props.itemID);
   if (!props.itemID){
-    // Si pokeID est est undeifned
   } else if (props.itemID === "random") {
     fetchRandomItem().then((data) => {
       console.log("TEST DB", data);
