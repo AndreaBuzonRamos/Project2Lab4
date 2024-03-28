@@ -10,8 +10,8 @@ export const useAppStore = defineStore("app", {
     return { panier: [], user: "Prof" };
   },
   actions: {
-    addToCart(pokemonID) {
-      this.panier.push(pokemonID);
+    addToCart(itemID) {
+      this.panier.push(itemID);
       localStorage.setItem("panier", JSON.stringify(this.panier));
     },
     removeFromCart(index) {
