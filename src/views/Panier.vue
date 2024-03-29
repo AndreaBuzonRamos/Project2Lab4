@@ -17,6 +17,8 @@
 <script setup>
 import { useAppStore } from "@/store/app";
 import Pokemon from "@/components/Pokemon.vue";
+/* Ca debrait être: import Item from "@/components/Item.vue et renderiser ces proprietés" */
+
 
 const store = useAppStore();
 
@@ -25,7 +27,7 @@ function removeFromCart(idx) {
   console.log(event.currentTarget.id)
   store.removeFromCart(idx)
 
-} 
+}
 </script>
 
 <style scoped></style>

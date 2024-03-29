@@ -1,3 +1,10 @@
+//import Item from "@/models/Item.js"
+
+export const fetchRandomItem = async () => {
+  const randId = Math.floor(Math.random() * 151) + 1;
+  console.log("DB 88777RAND:", randId);
+};
+
 const sql = require("mssql");
 const Item = require("Item");
 const sqlConfig = require("../BBDD/connexion");

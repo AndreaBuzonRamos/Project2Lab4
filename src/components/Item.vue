@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { fetchItem, fetchRandomItem } from "@/services/items.service.js";
+import { fetchItem, fetchItemsRange, fetchRandomItem } from "@/services/items.service.js";
 import Item from "@/models/Item.js";
 
 
@@ -48,7 +48,7 @@ const item = ref({});
 onMounted(() => {
   console.log("TEST BD ID PRODUCT", props.itemID);
   if (!props.itemID){
-    console.log("No Items a mostrar");
+    console.log("Cero item a mostrar");
   } else if (props.itemID === "random") {
     fetchRandomItem().then((data) => {
       console.log("TEST DB RANDOM PRODUCT", data);
