@@ -27,23 +27,22 @@
         </template>
       </v-slider>
     </div>
-
     <div class="d-flex justify-center align-center flex-column w-100">
       <v-btn
-        @click="pokemonRandomSeed = Math.floor(pokemonRandomSeed + Math.random()*100)"
+        @click="itemRandomInitial = Math.floor(itemRandomInitial + Math.random()*100)"
         class="w-75 bg-red cursor-grab"
       >
-        Attrapez des Pokemons
+      Choisissez vos produits
       </v-btn>
 
-      <v-container class="d-flex flex-row justify-start flex-wrap" :key="pokemonID">
+      <v-container class="d-flex flex-row justify-start flex-wrap" :key="itemID">
         <v-fab-transition group>
-          <Pokemon
+          <Item
             v-for="i in sliderValue"
-            pokemonID="random"
+            itemID="random"
             :catchable="true"
             @catched="addToCart"
-            :key="i + pokemonRandomSeed"
+            :key="i + itemRandomInitial"
             class="ma-3"
           />
         </v-fab-transition>
@@ -55,24 +54,25 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useAppStore } from "@/store/app";
-import Pokemon from "@/components/Pokemon.vue";
+import Item from "@/components/item.vue";
 
 onMounted(() => {
 });
+
 
 // Store
 
 const store = useAppStore();
 
 const addToCart = (id) => {
-  console.log("DB 88: ", id);
+  console.log("TEST DB PRODUC TO CART ", id);
   store.addToCart(id);
-  // console.log("DB 558: ");
+  console.log("TEST DB PRODUCT ADDED ");
 };
 
 //
 
-const pokemonRandomSeed = ref(1);
+const itemRandomInitial = ref(1);
 
 // Slider
 const minSliderValue = 3;
