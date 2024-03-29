@@ -1,4 +1,4 @@
-const sql = require("mssql");
+const mysql = require("mysql");
 const {
   DB_USER,
   DB_PASSWORD,
@@ -11,30 +11,31 @@ const sqlConfig = {
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_DATABASE,
-  server: DB_SERVER,
+  host: DB_SERVER,
   port: DB_PORT,
-  pool: {
-    max: 10,
-    min: 0,
-    idleTimeoutMillis: 30000,
-  },
-  options: {
-    encrypt: true, // for azure
-    trustServerCertificate: true, // Cambia a true para certificados autofirmados
-  },
 };
 
-async function connectAndQuery() {
-  try {
-    await sql.connect(sqlConfig);
-    const result = await sql.query`select * from PRODUIT`;
-    console.log("Connected to PRODUIT");
-    console.log(result);
-  } catch (err) {
-    console.error("Error en la conexión o consulta:", err);
-  } finally {
-    sql.close();
-  }
-}
+const connection = mysql.createConnection(sqlConfig);
 
-connectAndQuery();
+connection.connect(function(err) {
+  if (err) {
+    console.error("Error en la conexión:", err);
+    return;
+  }
+  console.log("Conexión establecida");
+});
+
+connection.query("SELECT * FROM PRODUIT", function (err, result, fields) {
+  if (err) {
+    console.error("Error en la consulta:", err);
+    return;
+  }
+  console.log("Resultado de la consulta:", result);
+  connection.end(function(err) {
+    if (err) {
+      console.error("Error al cerrar la conexión:", err);
+      return;
+    }
+    console.log("Conexión cerrada");
+  });
+});
