@@ -1,5 +1,5 @@
-const DB_USER = "rsteve";
-const DB_PASSWORD = "rsteve9876";
+const DB_USER = "root";
+const DB_PASSWORD = "12345678";
 const DB_SERVER = "localhost";
 const DB_PORT = 3306;
 const DB_DATABASE = "304-AH-INTER-SERVERII-ANDREA-OSMANY";
@@ -11,3 +11,5 @@ module.exports = {
   DB_PORT,
   DB_DATABASE,
 };
+
+
